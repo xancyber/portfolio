@@ -169,6 +169,22 @@
                         </div>
                         <div class="space-y-6">
                             
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between group gap-2 sm:gap-0 cursor-crosshair cve-row" data-cvss="6.5">
+    <div>
+        <h4 class="font-bold text-white text-base sm:text-lg flex items-center flex-wrap gap-2 sm:gap-3">
+            OpenClaude Zero-Day 
+            <span class="cve-badge inline-flex items-center justify-center overflow-hidden rounded border font-mono text-xs transition-all duration-300 h-6 w-11 bg-red-500/10 text-red-400 border-red-500/20 group-hover:w-24 group-hover:bg-red-500/20 group-hover:border-red-500/50 group-hover:shadow-[0_0_12px_rgba(239,68,68,0.4)]">
+                <span class="cve-text transition-opacity duration-200 group-hover:opacity-0 group-hover:absolute">CVE</span>
+                <span class="cvss-text opacity-0 absolute transition-opacity duration-200 group-hover:opacity-100 group-hover:relative font-bold tracking-widest drop-shadow-[0_0_8px_rgba(239,68,68,0.8)]"></span>
+            </span>
+        </h4>
+        <p class="text-textMuted text-xs sm:text-sm mt-1">Discovered an OAuth state-validation bypass leading to remote session termination in OpenClaude.</p>
+    </div>
+    <div class="mt-1 sm:mt-0 font-mono text-xs sm:text-sm text-textMuted group-hover:text-white transition-colors">
+        <a href="https://github.com/Gitlawb/openclaude/security/advisories/GHSA-c73c-x77g-854r" target="_blank" class="hover:underline">CVE-2026-42073 <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i></a>
+    </div>
+</div>
+
                             <div class="flex flex-col sm:flex-row sm:items-center justify-between group gap-2 sm:gap-0">
                                 <div>
                                     <h4 class="font-bold text-white text-base sm:text-lg flex items-center flex-wrap gap-2 sm:gap-3">
@@ -340,13 +356,60 @@
         }, { threshold: 0.15 });
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
+        
+        document.querySelectorAll('.cve-row').forEach(row => {
+            const cvssText = row.querySelector('.cvss-text');
+            const targetScore = row.dataset.cvss;
+            let interval = null;
+
+            row.addEventListener('mouseenter', () => {
+                let iteration = 0;
+                clearInterval(interval);
+                
+                interval = setInterval(() => {
+                    cvssText.innerText = targetScore.split("")
+                        .map((letter, index) => {
+                            if(index < iteration) return targetScore[index];
+                            return chars[Math.floor(Math.random() * chars.length)];
+                        })
+                        .join("");
+                    
+                    if(iteration >= targetScore.length) {
+                        clearInterval(interval);
+                    }
+                    iteration += 1 / 4; 
+                }, 30);
+            });
+
+            row.addEventListener('mouseleave', () => {
+                clearInterval(interval);
+            });
+        });
+
         const skullArt = `
              .ed"""" """$$$$be.
            -"           ^""**$$$e.
          ."                   '$$$c
         /                      "4$$b
-       d  3                      $$$$\n       $  * .$$$$$$\n      .$  ^c           $$$$$e$$$$$$$$.\n      d$L  4.         4$$$$$$$$$$$$$$b\n      $$$$b ^ceeeee.  4$$ECL.F*$$$$$$$\n      $$$$P d$$$$F $ $$$$$$$$$- $$$$$$\n      3$$$F "$$$$b   $"$$$$$$$  $$$$*"\n       $$P\"  "$$b   .$ $$$$$...e$$\n        *c    ..    $$ 3$$$$$$$$$$eF\n          %ce""    $$$  $$$$$$$$$$*\n           *$e.    *** d$$$$$"L$$\n            $$$      4J$$$$$% $$$\n           $"'$=e....$*$$**$cz$$\"\n           $  *=%4.$ L L$ P3$$$F\n           $   "%*ebJL s 3$$$$\"\n           %..      4$$P"
+       d  3                      $$$$
+       $  * .$$$$$$
+      .$  ^c           $$$$$e$$$$$$$$.
+      d$L  4.         4$$$$$$$$$$$$$$b
+      $$$$b ^ceeeee.  4$$ECL.F*$$$$$$$
+      $$$$P d$$$$F $ $$$$$$$$$- $$$$$$
+      3$$$F "$$$$b   $"$$$$$$$  $$$$*"
+       $$P"  "$$b   .$ $$$$$...e$$
+        *c    ..    $$ 3$$$$$$$$$$eF
+          %ce""    $$$  $$$$$$$$$$*
+           *$e.    *** d$$$$$"L$$
+            $$$      4J$$$$$% $$$
+           $"'$=e....$*$$**$cz$$"
+           $  *=%4.$ L L$ P3$$$F
+           $   "%*ebJL s 3$$$$"
+           %..      4$$P"
         `;
+
         console.log(`%c${skullArt}\n\n[!] XANLAR AGAMALIZADE | RED TEAM | OSINT \n--> https://github.com/xancyber`, "color: #22c55e; font-family: monospace;");
     </script>
 </body>
