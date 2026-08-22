@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Xanlar Agamalizade | Cybersecurity Researcher</title>
-    <meta name="description" content="Cybersecurity Researcher | Penetration Tester | OSINT Analyst | CTI Analyst. CVE-2026-42073. CVE-2026-42073 Author. CVE-2026-19135. CVE-2026-19135 Author. CVE-2026-18466. CVE-2026-18466 Author. Focused on offensive security, red teaming, web exploitation, open source intelligence, and secure system architecture.">
-    <meta name="keywords" content="Xanlar Agamalizade, Cybersecurity Researcher, Penetration Tester, CVE-2026-42073, CVE-2026-42073 Author, CVE-2026-19135, CVE-2026-19135 Author, CVE-2026-18466, CVE-2026-18466 Author, CVE researcher, Bug Bounty Hunter, Web Application Pentest, Open Source Intelligence, Cyber Threat Intelligence, and Dark web monitoring.">
+    <meta name="description" content="Cybersecurity Researcher | Penetration Tester | OSINT Analyst | CTI Analyst. CVE-2026-42073. CVE-2026-42073 Author. CVE-2026-75854. CVE-2026-75854 Author. CVE-2026-18466. CVE-2026-18466 Author. CVE-2026-19135. CVE-2026-19135 Author. CVE-2026-77427. CVE-2026-77427 Author.  Focused on offensive security, red teaming, web exploitation, open source intelligence, and secure system architecture.">
+    <meta name="keywords" content="Xanlar Agamalizade, Cybersecurity Researcher, Penetration Tester, CVE-2026-42073, CVE-2026-42073 Author, CVE-2026-75854, CVE-2026-75854 Author, CVE-2026-18466, CVE-2026-18466 Author, CVE-2026-19135, CVE-2026-19135 Author, CVE-2026-77427, CVE-2026-77427 Author, CVE researcher, Bug Bounty Hunter, Web Application Pentest, Open Source Intelligence, Cyber Threat Intelligence, and Dark web monitoring.">
     <link rel="icon" type="image/png" href="spider.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
@@ -104,6 +104,64 @@
 
         .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* CVSS v3.1 severity -> intensity of the single red accent.
+           One hue keeps the palette intact; weight carries the severity.
+           Driven by data-cvss, band resolved in JS. */
+        .cve-row {
+            --sev: 239 68 68;
+            --sev-fill: 0.08;
+            --sev-line: 0.20;
+            --sev-text: 0.75;
+            --sev-glow: 0;
+        }
+        .cve-row[data-sev="critical"] { --sev-fill: 0.22; --sev-line: 0.60; --sev-text: 1;    --sev-glow: 0.45; }
+        .cve-row[data-sev="high"]     { --sev-fill: 0.15; --sev-line: 0.42; --sev-text: 0.94; --sev-glow: 0.26; }
+        .cve-row[data-sev="medium"]   { --sev-fill: 0.08; --sev-line: 0.22; --sev-text: 0.78; --sev-glow: 0; }
+        .cve-row[data-sev="low"]      { --sev-fill: 0.05; --sev-line: 0.15; --sev-text: 0.58; --sev-glow: 0; }
+
+        .cve-badge {
+            background-color: rgb(var(--sev) / var(--sev-fill));
+            color: rgb(var(--sev) / var(--sev-text));
+            border-color: rgb(var(--sev) / var(--sev-line));
+            box-shadow: 0 0 10px rgb(var(--sev) / var(--sev-glow));
+        }
+        .cve-row:hover .cve-badge {
+            background-color: rgb(var(--sev) / calc(var(--sev-fill) + 0.12));
+            border-color: rgb(var(--sev) / calc(var(--sev-line) + 0.30));
+            box-shadow: 0 0 12px rgb(var(--sev) / calc(var(--sev-glow) + 0.40));
+        }
+        .cve-row:hover .cvss-text {
+            filter: drop-shadow(0 0 8px rgb(var(--sev) / 0.80));
+        }
+
+        /* Bug bounty badge - neon treatment, same accent as the CVE badges. */
+        .bounty-badge {
+            background-color: rgb(239 68 68 / 0.12);
+            color: rgb(248 113 113);
+            border-color: rgb(239 68 68 / 0.45);
+            box-shadow: 0 0 12px rgb(239 68 68 / 0.30), inset 0 0 8px rgb(239 68 68 / 0.10);
+            text-shadow: 0 0 8px rgb(239 68 68 / 0.60);
+            transition: all 0.3s ease;
+        }
+        .group:hover .bounty-badge {
+            border-color: rgb(239 68 68 / 0.75);
+            box-shadow: 0 0 18px rgb(239 68 68 / 0.50), inset 0 0 10px rgb(239 68 68 / 0.16);
+            text-shadow: 0 0 10px rgb(239 68 68 / 0.85);
+        }
+
+        /* Acknowledgement chips */
+        .org-chip {
+            background-color: rgb(255 255 255 / 0.03);
+            border: 1px solid rgb(255 255 255 / 0.10);
+            color: #8f8f8f;
+            transition: all 0.25s ease;
+        }
+        .org-chip:hover {
+            background-color: rgb(239 68 68 / 0.07);
+            border-color: rgb(239 68 68 / 0.40);
+            color: #EDEDED;
+        }
     </style>
 
     <script type="application/ld+json">
@@ -165,69 +223,107 @@
 
                     <div class="bento-card p-6 sm:p-8 md:col-span-3">
                         <div class="flex items-center justify-between mb-8 border-b border-border pb-2">
-                            <h2 class="text-sm font-sans font-bold text-textMuted uppercase tracking-widest">Vulnerability Research & Achievements</h2>
+                            <h2 class="text-sm font-sans font-bold text-textMuted uppercase tracking-widest">Security Advisories & CVEs</h2>
                         </div>
                         <div class="space-y-6">
+
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between group gap-2 sm:gap-0 cursor-crosshair cve-row" data-cvss="9.8">
+    <div>
+        <h4 class="font-bold text-white text-base sm:text-lg flex items-center flex-wrap gap-2 sm:gap-3">
+            ArcadeDB &mdash; Unauthenticated Database Access
+            <span class="cve-badge inline-flex items-center justify-center overflow-hidden rounded border font-mono text-xs transition-all duration-300 h-6 w-11 group-hover:w-24">
+                <span class="cve-text transition-opacity duration-200 group-hover:opacity-0 group-hover:absolute">CVE</span>
+                <span class="cvss-text opacity-0 absolute transition-opacity duration-200 group-hover:opacity-100 group-hover:relative font-bold tracking-widest"></span>
+            </span>
+        </h4>
+        <p class="text-textMuted text-xs sm:text-sm mt-1">The Redis wire-protocol plugin bound no authenticated principal, exposing every database to remote read, write, and delete.</p>
+    </div>
+    <div class="mt-1 sm:mt-0 font-mono text-xs sm:text-sm text-textMuted group-hover:text-white transition-colors whitespace-nowrap">
+        <a href="https://github.com/ArcadeData/arcadedb/security/advisories/GHSA-m46c-jh3x-xwrp" target="_blank" class="hover:underline">CVE-2026-75854 <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i></a>
+    </div>
+</div>
 
                             <div class="flex flex-col sm:flex-row sm:items-center justify-between group gap-2 sm:gap-0 cursor-crosshair cve-row" data-cvss="5.4">
     <div>
         <h4 class="font-bold text-white text-base sm:text-lg flex items-center flex-wrap gap-2 sm:gap-3">
-            WordPress Zer0-Day
-            <span class="cve-badge inline-flex items-center justify-center overflow-hidden rounded border font-mono text-xs transition-all duration-300 h-6 w-11 bg-red-500/10 text-red-400 border-red-500/20 group-hover:w-24 group-hover:bg-red-500/20 group-hover:border-red-500/50 group-hover:shadow-[0_0_12px_rgba(239,68,68,0.4)]">
+            WordPress &mdash; Broken Access Control
+            <span class="cve-badge inline-flex items-center justify-center overflow-hidden rounded border font-mono text-xs transition-all duration-300 h-6 w-11 group-hover:w-24">
                 <span class="cve-text transition-opacity duration-200 group-hover:opacity-0 group-hover:absolute">CVE</span>
-                <span class="cvss-text opacity-0 absolute transition-opacity duration-200 group-hover:opacity-100 group-hover:relative font-bold tracking-widest drop-shadow-[0_0_8px_rgba(239,68,68,0.8)]"></span>
+                <span class="cvss-text opacity-0 absolute transition-opacity duration-200 group-hover:opacity-100 group-hover:relative font-bold tracking-widest"></span>
             </span>
         </h4>
-        <p class="text-textMuted text-xs sm:text-sm mt-1">Identified a broken access control flaw allowing subscriber-level option creation in the  Maps plugin.</p>
+        <p class="text-textMuted text-xs sm:text-sm mt-1">An AJAX handler in the WP Maps plugin shipped without a capability check or nonce, letting subscribers write unbounded autoloaded options.</p>
     </div>
     <div class="mt-1 sm:mt-0 font-mono text-xs sm:text-sm text-textMuted group-hover:text-white transition-colors whitespace-nowrap">
         <a href="https://wpscan.com/vulnerability/2e12d9cf-520a-4602-aeee-7dbc26f79951/" target="_blank" class="hover:underline">CVE-2026-18466 <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i></a>
     </div>
 </div>
 
-                            <div class="flex flex-col sm:flex-row sm:items-center justify-between group gap-2 sm:gap-0 cursor-crosshair cve-row" data-cvss="5.4">
-    <div>
-        <h4 class="font-bold text-white text-base sm:text-lg flex items-center flex-wrap gap-2 sm:gap-3">
-            OpenNMS Zer0-Day
-            <span class="cve-badge inline-flex items-center justify-center overflow-hidden rounded border font-mono text-xs transition-all duration-300 h-6 w-11 bg-red-500/10 text-red-400 border-red-500/20 group-hover:w-24 group-hover:bg-red-500/20 group-hover:border-red-500/50 group-hover:shadow-[0_0_12px_rgba(239,68,68,0.4)]">
-                <span class="cve-text transition-opacity duration-200 group-hover:opacity-0 group-hover:absolute">CVE</span>
-                <span class="cvss-text opacity-0 absolute transition-opacity duration-200 group-hover:opacity-100 group-hover:relative font-bold tracking-widest drop-shadow-[0_0_8px_rgba(239,68,68,0.8)]"></span>
-            </span>
-        </h4>
-        <p class="text-textMuted text-xs sm:text-sm mt-1">Discovered a JEXL sandbox bypass enabling arbitrary Java class loading in OpenNMS Meridian and Horizon.</p>
-    </div>
-    <div class="mt-1 sm:mt-0 font-mono text-xs sm:text-sm text-textMuted group-hover:text-white transition-colors whitespace-nowrap">
-        <a href="https://www.cve.org/CVERecord?id=CVE-2026-19135" target="_blank" class="hover:underline">CVE-2026-19135 <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i></a>
-    </div>
-</div>
-
                             <div class="flex flex-col sm:flex-row sm:items-center justify-between group gap-2 sm:gap-0 cursor-crosshair cve-row" data-cvss="6.5">
     <div>
         <h4 class="font-bold text-white text-base sm:text-lg flex items-center flex-wrap gap-2 sm:gap-3">
-            OpenClaude Zer0-Day
-            <span class="cve-badge inline-flex items-center justify-center overflow-hidden rounded border font-mono text-xs transition-all duration-300 h-6 w-11 bg-red-500/10 text-red-400 border-red-500/20 group-hover:w-24 group-hover:bg-red-500/20 group-hover:border-red-500/50 group-hover:shadow-[0_0_12px_rgba(239,68,68,0.4)]">
+            OpenClaude &mdash; OAuth State Bypass
+            <span class="cve-badge inline-flex items-center justify-center overflow-hidden rounded border font-mono text-xs transition-all duration-300 h-6 w-11 group-hover:w-24">
                 <span class="cve-text transition-opacity duration-200 group-hover:opacity-0 group-hover:absolute">CVE</span>
-                <span class="cvss-text opacity-0 absolute transition-opacity duration-200 group-hover:opacity-100 group-hover:relative font-bold tracking-widest drop-shadow-[0_0_8px_rgba(239,68,68,0.8)]"></span>
+                <span class="cvss-text opacity-0 absolute transition-opacity duration-200 group-hover:opacity-100 group-hover:relative font-bold tracking-widest"></span>
             </span>
         </h4>
-        <p class="text-textMuted text-xs sm:text-sm mt-1">Discovered an OAuth state-validation bypass leading to remote session termination in OpenClaude.</p>
+        <p class="text-textMuted text-xs sm:text-sm mt-1">Missing state-parameter validation in the OAuth callback allowed remote termination of authenticated sessions.</p>
     </div>
     <div class="mt-1 sm:mt-0 font-mono text-xs sm:text-sm text-textMuted group-hover:text-white transition-colors whitespace-nowrap">
         <a href="https://github.com/Gitlawb/openclaude/security/advisories/GHSA-c73c-x77g-854r" target="_blank" class="hover:underline">CVE-2026-42073 <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i></a>
     </div>
 </div>
 
-                            <div class="flex flex-col sm:flex-row sm:items-center justify-between group gap-2 sm:gap-0">
-                                <div>
-                                    <h4 class="font-bold text-white text-base sm:text-lg flex items-center flex-wrap gap-2 sm:gap-3">
-                                        Enterprise Security Acknowledgements
-                                        <span class="px-2 py-0.5 bg-red-500/10 text-red-400 border border-red-500/20 rounded text-[10px] font-mono tracking-widest mt-1 sm:mt-0 uppercase">Bug Bounty</span>
-                                    </h4>
-                                    <p class="text-textMuted text-xs sm:text-sm mt-1 font-sans">Acknowledged and thanked for identifying and reporting critical security vulnerabilities.</p>
-                                </div>
-                                 <div class="mt-1 sm:mt-0 font-mono text-[10px] sm:text-xs text-textMuted group-hover:text-white transition-colors sm:text-right uppercase tracking-widest leading-relaxed">
-                                    Microsoft, DeepSeek AI, NASA, Harvard, <br class="hidden sm:block">
-                                    UNESCO, Cisco, Ferrari, Land Rover USA, Jaguar    ...
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between group gap-2 sm:gap-0 cursor-crosshair cve-row" data-cvss="5.4">
+    <div>
+        <h4 class="font-bold text-white text-base sm:text-lg flex items-center flex-wrap gap-2 sm:gap-3">
+            OpenNMS &mdash; JEXL Sandbox Bypass
+            <span class="cve-badge inline-flex items-center justify-center overflow-hidden rounded border font-mono text-xs transition-all duration-300 h-6 w-11 group-hover:w-24">
+                <span class="cve-text transition-opacity duration-200 group-hover:opacity-0 group-hover:absolute">CVE</span>
+                <span class="cvss-text opacity-0 absolute transition-opacity duration-200 group-hover:opacity-100 group-hover:relative font-bold tracking-widest"></span>
+            </span>
+        </h4>
+        <p class="text-textMuted text-xs sm:text-sm mt-1">A crafted expression submitted to the Measurements REST API escaped the sandbox and loaded arbitrary Java classes.</p>
+    </div>
+    <div class="mt-1 sm:mt-0 font-mono text-xs sm:text-sm text-textMuted group-hover:text-white transition-colors whitespace-nowrap">
+        <a href="https://www.cve.org/CVERecord?id=CVE-2026-19135" target="_blank" class="hover:underline">CVE-2026-19135 <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i></a>
+    </div>
+</div>
+
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between group gap-2 sm:gap-0 cursor-crosshair cve-row" data-cvss="5.9">
+    <div>
+        <h4 class="font-bold text-white text-base sm:text-lg flex items-center flex-wrap gap-2 sm:gap-3">
+            FileRise &mdash; Hardcoded Encryption Key
+            <span class="cve-badge inline-flex items-center justify-center overflow-hidden rounded border font-mono text-xs transition-all duration-300 h-6 w-11 group-hover:w-24">
+                <span class="cve-text transition-opacity duration-200 group-hover:opacity-0 group-hover:absolute">CVE</span>
+                <span class="cvss-text opacity-0 absolute transition-opacity duration-200 group-hover:opacity-100 group-hover:relative font-bold tracking-widest"></span>
+            </span>
+        </h4>
+        <p class="text-textMuted text-xs sm:text-sm mt-1">A configuration fallback silently accepted a published default key, exposing TOTP seeds, OIDC secrets, and storage credentials.</p>
+    </div>
+    <div class="mt-1 sm:mt-0 font-mono text-xs sm:text-sm text-textMuted group-hover:text-white transition-colors whitespace-nowrap">
+        <a href="https://github.com/error311/FileRise/security/advisories/GHSA-g6p5-9cpq-mp5h" target="_blank" class="hover:underline">CVE-2026-77427 <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i></a>
+    </div>
+</div>
+
+                            <div class="group pt-2 border-t border-border/60">
+                                <h4 class="font-bold text-white text-base sm:text-lg flex items-center flex-wrap gap-2 sm:gap-3">
+                                    Enterprise Security Acknowledgements
+                                    <span class="bounty-badge inline-flex items-center px-2.5 py-0.5 rounded border text-[10px] font-mono tracking-widest uppercase">Bug Bounty</span>
+                                </h4>
+                                <p class="text-textMuted text-xs sm:text-sm mt-1 font-sans">Acknowledged and thanked for identifying and reporting critical security vulnerabilities.</p>
+                                <div class="flex flex-wrap gap-2 mt-4">
+                                    <span class="org-chip px-2.5 py-1 rounded font-mono text-[10px] uppercase tracking-widest">Microsoft</span>
+                                    <span class="org-chip px-2.5 py-1 rounded font-mono text-[10px] uppercase tracking-widest">DeepSeek AI</span>
+                                    <span class="org-chip px-2.5 py-1 rounded font-mono text-[10px] uppercase tracking-widest">NASA</span>
+                                    <span class="org-chip px-2.5 py-1 rounded font-mono text-[10px] uppercase tracking-widest">Harvard</span>
+                                    <span class="org-chip px-2.5 py-1 rounded font-mono text-[10px] uppercase tracking-widest">UNESCO</span>
+                                    <span class="org-chip px-2.5 py-1 rounded font-mono text-[10px] uppercase tracking-widest">Cisco</span>
+                                    <span class="org-chip px-2.5 py-1 rounded font-mono text-[10px] uppercase tracking-widest">Ferrari</span>
+                                    <span class="org-chip px-2.5 py-1 rounded font-mono text-[10px] uppercase tracking-widest">Land Rover</span>
+                                    <span class="org-chip px-2.5 py-1 rounded font-mono text-[10px] uppercase tracking-widest">Jaguar</span>
+                                    <span class="org-chip px-2.5 py-1 rounded font-mono text-[10px] uppercase tracking-widest opacity-60">+ More</span>
                                 </div>
                             </div>
                         </div>
@@ -343,7 +439,7 @@
                         <span></span><span></span><span></span><span></span>
                     </div>
                 </div>
-                <span class="text-xs font-sans font-bold text-textMuted group-hover:text-white tracking-widest uppercase">Digital Defense...</span>
+                <span class="text-xs font-sans font-bold text-textMuted group-hover:text-white tracking-widest uppercase">MUSIC...</span>
             </button>
             <audio id="bg-music" src="music.mp3" loop preload="none"></audio>
         </div>
@@ -390,10 +486,20 @@
 
         const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
 
+        // CVSS v3.1 qualitative severity bands (NVD / FIRST).
+        function cvssSeverity(score) {
+            if (score >= 9.0) return 'critical';
+            if (score >= 7.0) return 'high';
+            if (score >= 4.0) return 'medium';
+            return 'low';
+        }
+
         document.querySelectorAll('.cve-row').forEach(row => {
             const cvssText = row.querySelector('.cvss-text');
             const targetScore = row.dataset.cvss;
             let interval = null;
+
+            row.dataset.sev = cvssSeverity(parseFloat(targetScore));
 
             row.addEventListener('mouseenter', () => {
                 let iteration = 0;
