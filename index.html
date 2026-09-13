@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Xanlar Agamalizade | Cybersecurity Researcher</title>
-    <meta name="description" content="Cybersecurity Researcher | Penetration Tester | OSINT Analyst | CTI Analyst. CVE-2026-42073. CVE-2026-42073 Author. CVE-2026-75854. CVE-2026-75854 Author. CVE-2026-18466. CVE-2026-18466 Author. CVE-2026-19135. CVE-2026-19135 Author. CVE-2026-77427. CVE-2026-77427 Author.  Focused on offensive security, red teaming, web exploitation, open source intelligence, and secure system architecture.">
-    <meta name="keywords" content="Xanlar Agamalizade, Cybersecurity Researcher, Penetration Tester, CVE-2026-42073, CVE-2026-42073 Author, CVE-2026-75854, CVE-2026-75854 Author, CVE-2026-18466, CVE-2026-18466 Author, CVE-2026-19135, CVE-2026-19135 Author, CVE-2026-77427, CVE-2026-77427 Author, CVE researcher, Bug Bounty Hunter, Web Application Pentest, Open Source Intelligence, Cyber Threat Intelligence, and Dark web monitoring.">
+    <meta name="description" content="Cybersecurity Researcher | Penetration Tester | OSINT Analyst | CTI Analyst. CVE/zer0-day hobbyist. 30+ CVE. Focused on offensive security, red teaming, web exploitation, open source intelligence, and secure system architecture.">
+    <meta name="keywords" content="Xanlar Agamalizade, Cybersecurity Researcher, Penetration Tester, CVE researcher, Bug Bounty Hunter, Web Application Pentest, Open Source Intelligence, Cyber Threat Intelligence, and Dark web monitoring. CVE-2026-42073, CVE-2026-42073 Author, CVE-2026-75854, CVE-2026-75854 Author, CVE-2026-18466, CVE-2026-18466 Author, CVE-2026-19135, CVE-2026-19135 Author, CVE-2026-77427, CVE-2026-77427 Author, CVE-2026-89054, CVE-2026-89054 Author, CVE-2026-89089 Author">
     <link rel="icon" type="image/png" href="spider.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
@@ -126,10 +126,13 @@
             border-color: rgb(var(--sev) / var(--sev-line));
             box-shadow: 0 0 10px rgb(var(--sev) / var(--sev-glow));
         }
+        /* Hover changes colour, glow and scale only - never width - so the
+           title line can never reflow on desktop or touch devices. */
         .cve-row:hover .cve-badge {
             background-color: rgb(var(--sev) / calc(var(--sev-fill) + 0.12));
             border-color: rgb(var(--sev) / calc(var(--sev-line) + 0.30));
             box-shadow: 0 0 12px rgb(var(--sev) / calc(var(--sev-glow) + 0.40));
+            transform: scale(1.06);
         }
         .cve-row:hover .cvss-text {
             filter: drop-shadow(0 0 8px rgb(var(--sev) / 0.80));
@@ -229,12 +232,11 @@
 
                             <div class="flex flex-col sm:flex-row sm:items-center justify-between group gap-2 sm:gap-0 cursor-crosshair cve-row" data-cvss="9.8">
     <div>
-        <h4 class="font-bold text-white text-base sm:text-lg flex items-center flex-wrap gap-2 sm:gap-3">
-            ArcadeDB &mdash; Unauthenticated Database Access
-            <span class="cve-badge inline-flex items-center justify-center overflow-hidden rounded border font-mono text-xs transition-all duration-300 h-6 w-11 group-hover:w-24">
-                <span class="cve-text transition-opacity duration-200 group-hover:opacity-0 group-hover:absolute">CVE</span>
-                <span class="cvss-text opacity-0 absolute transition-opacity duration-200 group-hover:opacity-100 group-hover:relative font-bold tracking-widest"></span>
-            </span>
+        <h4 class="font-bold text-white text-base sm:text-lg leading-snug">
+            ArcadeDB &mdash; Unauthenticated Database <span class="whitespace-nowrap">Access&nbsp;<span class="cve-badge relative inline-flex align-middle ml-1.5 overflow-hidden rounded border font-mono text-xs transition-all duration-300 h-6 w-12">
+                <span class="cve-text absolute inset-0 flex items-center justify-center transition-opacity duration-200 group-hover:opacity-0">CVE</span>
+                <span class="cvss-text absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100 font-bold tracking-widest"></span>
+            </span></span>
         </h4>
         <p class="text-textMuted text-xs sm:text-sm mt-1">The Redis wire-protocol plugin bound no authenticated principal, exposing every database to remote read, write, and delete.</p>
     </div>
@@ -243,14 +245,58 @@
     </div>
 </div>
 
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between group gap-2 sm:gap-0 cursor-crosshair cve-row" data-cvss="8.2">
+    <div>
+        <h4 class="font-bold text-white text-base sm:text-lg leading-snug">
+            OpenNMS &mdash; Missing <span class="whitespace-nowrap">Authorization&nbsp;<span class="cve-badge relative inline-flex align-middle ml-1.5 overflow-hidden rounded border font-mono text-xs transition-all duration-300 h-6 w-12">
+                <span class="cve-text absolute inset-0 flex items-center justify-center transition-opacity duration-200 group-hover:opacity-0">CVE</span>
+                <span class="cvss-text absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100 font-bold tracking-widest"></span>
+            </span></span>
+        </h4>
+        <p class="text-textMuted text-xs sm:text-sm mt-1">Spring Security rules for /api/v2 omitted PATCH, letting unauthenticated requests disable event definitions and SNMP collection.</p>
+    </div>
+    <div class="mt-1 sm:mt-0 font-mono text-xs sm:text-sm text-textMuted group-hover:text-white transition-colors whitespace-nowrap">
+        <a href="https://www.cve.org/CVERecord?id=CVE-2026-89054" target="_blank" class="hover:underline">CVE-2026-89054 <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i></a>
+    </div>
+</div>
+
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between group gap-2 sm:gap-0 cursor-crosshair cve-row" data-cvss="6.5">
+    <div>
+        <h4 class="font-bold text-white text-base sm:text-lg leading-snug">
+            OpenNMS &mdash; SQL <span class="whitespace-nowrap">Injection&nbsp;<span class="cve-badge relative inline-flex align-middle ml-1.5 overflow-hidden rounded border font-mono text-xs transition-all duration-300 h-6 w-12">
+                <span class="cve-text absolute inset-0 flex items-center justify-center transition-opacity duration-200 group-hover:opacity-0">CVE</span>
+                <span class="cvss-text absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100 font-bold tracking-widest"></span>
+            </span></span>
+        </h4>
+        <p class="text-textMuted text-xs sm:text-sm mt-1">Shipped asset reports spliced the DATE_FORMAT parameter unescaped into SQL, exposing stored credentials to low-privileged users.</p>
+    </div>
+    <div class="mt-1 sm:mt-0 font-mono text-xs sm:text-sm text-textMuted group-hover:text-white transition-colors whitespace-nowrap">
+        <a href="https://www.cve.org/CVERecord?id=CVE-2026-89089" target="_blank" class="hover:underline">CVE-2026-89089 <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i></a>
+    </div>
+</div>
+
                             <div class="flex flex-col sm:flex-row sm:items-center justify-between group gap-2 sm:gap-0 cursor-crosshair cve-row" data-cvss="5.4">
     <div>
-        <h4 class="font-bold text-white text-base sm:text-lg flex items-center flex-wrap gap-2 sm:gap-3">
-            WordPress &mdash; Broken Access Control
-            <span class="cve-badge inline-flex items-center justify-center overflow-hidden rounded border font-mono text-xs transition-all duration-300 h-6 w-11 group-hover:w-24">
-                <span class="cve-text transition-opacity duration-200 group-hover:opacity-0 group-hover:absolute">CVE</span>
-                <span class="cvss-text opacity-0 absolute transition-opacity duration-200 group-hover:opacity-100 group-hover:relative font-bold tracking-widest"></span>
-            </span>
+        <h4 class="font-bold text-white text-base sm:text-lg leading-snug">
+            OpenNMS &mdash; JEXL Sandbox <span class="whitespace-nowrap">Bypass&nbsp;<span class="cve-badge relative inline-flex align-middle ml-1.5 overflow-hidden rounded border font-mono text-xs transition-all duration-300 h-6 w-12">
+                <span class="cve-text absolute inset-0 flex items-center justify-center transition-opacity duration-200 group-hover:opacity-0">CVE</span>
+                <span class="cvss-text absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100 font-bold tracking-widest"></span>
+            </span></span>
+        </h4>
+        <p class="text-textMuted text-xs sm:text-sm mt-1">A crafted expression submitted to the Measurements REST API escaped the sandbox and loaded arbitrary Java classes.</p>
+    </div>
+    <div class="mt-1 sm:mt-0 font-mono text-xs sm:text-sm text-textMuted group-hover:text-white transition-colors whitespace-nowrap">
+        <a href="https://www.cve.org/CVERecord?id=CVE-2026-19135" target="_blank" class="hover:underline">CVE-2026-19135 <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i></a>
+    </div>
+</div>
+
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between group gap-2 sm:gap-0 cursor-crosshair cve-row" data-cvss="5.4">
+    <div>
+        <h4 class="font-bold text-white text-base sm:text-lg leading-snug">
+            WordPress &mdash; Broken Access <span class="whitespace-nowrap">Control&nbsp;<span class="cve-badge relative inline-flex align-middle ml-1.5 overflow-hidden rounded border font-mono text-xs transition-all duration-300 h-6 w-12">
+                <span class="cve-text absolute inset-0 flex items-center justify-center transition-opacity duration-200 group-hover:opacity-0">CVE</span>
+                <span class="cvss-text absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100 font-bold tracking-widest"></span>
+            </span></span>
         </h4>
         <p class="text-textMuted text-xs sm:text-sm mt-1">An AJAX handler in the WP Maps plugin shipped without a capability check or nonce, letting subscribers write unbounded autoloaded options.</p>
     </div>
@@ -261,12 +307,11 @@
 
                             <div class="flex flex-col sm:flex-row sm:items-center justify-between group gap-2 sm:gap-0 cursor-crosshair cve-row" data-cvss="6.5">
     <div>
-        <h4 class="font-bold text-white text-base sm:text-lg flex items-center flex-wrap gap-2 sm:gap-3">
-            OpenClaude &mdash; OAuth State Bypass
-            <span class="cve-badge inline-flex items-center justify-center overflow-hidden rounded border font-mono text-xs transition-all duration-300 h-6 w-11 group-hover:w-24">
-                <span class="cve-text transition-opacity duration-200 group-hover:opacity-0 group-hover:absolute">CVE</span>
-                <span class="cvss-text opacity-0 absolute transition-opacity duration-200 group-hover:opacity-100 group-hover:relative font-bold tracking-widest"></span>
-            </span>
+        <h4 class="font-bold text-white text-base sm:text-lg leading-snug">
+            OpenClaude &mdash; OAuth State <span class="whitespace-nowrap">Bypass&nbsp;<span class="cve-badge relative inline-flex align-middle ml-1.5 overflow-hidden rounded border font-mono text-xs transition-all duration-300 h-6 w-12">
+                <span class="cve-text absolute inset-0 flex items-center justify-center transition-opacity duration-200 group-hover:opacity-0">CVE</span>
+                <span class="cvss-text absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100 font-bold tracking-widest"></span>
+            </span></span>
         </h4>
         <p class="text-textMuted text-xs sm:text-sm mt-1">Missing state-parameter validation in the OAuth callback allowed remote termination of authenticated sessions.</p>
     </div>
@@ -275,30 +320,13 @@
     </div>
 </div>
 
-                            <div class="flex flex-col sm:flex-row sm:items-center justify-between group gap-2 sm:gap-0 cursor-crosshair cve-row" data-cvss="5.4">
-    <div>
-        <h4 class="font-bold text-white text-base sm:text-lg flex items-center flex-wrap gap-2 sm:gap-3">
-            OpenNMS &mdash; JEXL Sandbox Bypass
-            <span class="cve-badge inline-flex items-center justify-center overflow-hidden rounded border font-mono text-xs transition-all duration-300 h-6 w-11 group-hover:w-24">
-                <span class="cve-text transition-opacity duration-200 group-hover:opacity-0 group-hover:absolute">CVE</span>
-                <span class="cvss-text opacity-0 absolute transition-opacity duration-200 group-hover:opacity-100 group-hover:relative font-bold tracking-widest"></span>
-            </span>
-        </h4>
-        <p class="text-textMuted text-xs sm:text-sm mt-1">A crafted expression submitted to the Measurements REST API escaped the sandbox and loaded arbitrary Java classes.</p>
-    </div>
-    <div class="mt-1 sm:mt-0 font-mono text-xs sm:text-sm text-textMuted group-hover:text-white transition-colors whitespace-nowrap">
-        <a href="https://www.cve.org/CVERecord?id=CVE-2026-19135" target="_blank" class="hover:underline">CVE-2026-19135 <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i></a>
-    </div>
-</div>
-
                             <div class="flex flex-col sm:flex-row sm:items-center justify-between group gap-2 sm:gap-0 cursor-crosshair cve-row" data-cvss="5.9">
     <div>
-        <h4 class="font-bold text-white text-base sm:text-lg flex items-center flex-wrap gap-2 sm:gap-3">
-            FileRise &mdash; Hardcoded Encryption Key
-            <span class="cve-badge inline-flex items-center justify-center overflow-hidden rounded border font-mono text-xs transition-all duration-300 h-6 w-11 group-hover:w-24">
-                <span class="cve-text transition-opacity duration-200 group-hover:opacity-0 group-hover:absolute">CVE</span>
-                <span class="cvss-text opacity-0 absolute transition-opacity duration-200 group-hover:opacity-100 group-hover:relative font-bold tracking-widest"></span>
-            </span>
+        <h4 class="font-bold text-white text-base sm:text-lg leading-snug">
+            FileRise &mdash; Hardcoded Encryption <span class="whitespace-nowrap">Key&nbsp;<span class="cve-badge relative inline-flex align-middle ml-1.5 overflow-hidden rounded border font-mono text-xs transition-all duration-300 h-6 w-12">
+                <span class="cve-text absolute inset-0 flex items-center justify-center transition-opacity duration-200 group-hover:opacity-0">CVE</span>
+                <span class="cvss-text absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100 font-bold tracking-widest"></span>
+            </span></span>
         </h4>
         <p class="text-textMuted text-xs sm:text-sm mt-1">A configuration fallback silently accepted a published default key, exposing TOTP seeds, OIDC secrets, and storage credentials.</p>
     </div>
@@ -308,9 +336,8 @@
 </div>
 
                             <div class="group pt-2 border-t border-border/60">
-                                <h4 class="font-bold text-white text-base sm:text-lg flex items-center flex-wrap gap-2 sm:gap-3">
-                                    Enterprise Security Acknowledgements
-                                    <span class="bounty-badge inline-flex items-center px-2.5 py-0.5 rounded border text-[10px] font-mono tracking-widest uppercase">Bug Bounty</span>
+                                <h4 class="font-bold text-white text-base sm:text-lg leading-snug">
+                                    Enterprise Security <span class="whitespace-nowrap">Acknowledgements&nbsp;<span class="bounty-badge inline-flex items-center align-middle ml-1.5 px-2.5 py-0.5 rounded border text-[10px] font-mono tracking-widest uppercase">Bug Bounty</span></span>
                                 </h4>
                                 <p class="text-textMuted text-xs sm:text-sm mt-1 font-sans">Acknowledged and thanked for identifying and reporting critical security vulnerabilities.</p>
                                 <div class="flex flex-wrap gap-2 mt-4">
@@ -439,7 +466,7 @@
                         <span></span><span></span><span></span><span></span>
                     </div>
                 </div>
-                <span class="text-xs font-sans font-bold text-textMuted group-hover:text-white tracking-widest uppercase">MUSIC...</span>
+                <span class="text-xs font-sans font-bold text-textMuted group-hover:text-white tracking-widest uppercase">Digital Defense...</span>
             </button>
             <audio id="bg-music" src="music.mp3" loop preload="none"></audio>
         </div>
